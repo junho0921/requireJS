@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DEMO4 define</title>
+</head>
+<body>
+<!-- 本html文件是依赖于jun的requireJS文件夹,请把本文件放在该文件夹根目录 -->
+<script src="require.js"></script>
+<script>
+console.error('****************************************** HTML1 开始 **********************************************');
+require(["./a/definetest"], function(A){
+    console.warn('获取成功了');
+    console.log(A);
+});
+console.error('****************************************** HTML1 结束 **********************************************');
+</script>
+</body>
+</html>

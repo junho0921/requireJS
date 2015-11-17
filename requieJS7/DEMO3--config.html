@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>捕获加载错</title>
+</head>
+<body>
+<div class="jj">演示</div>
+<script>
+    var clickfunc = function(e){
+        console.log('click func', e.type, e);
+    };
+    document.getElementsByClassName("jj")[0].addEventListener('click', clickfunc)
+</script>
+<!-- 本html文件是依赖于jun的requireJS文件夹,请把本文件放在该文件夹根目录 -->
+<script src="require.js"></script>
+<script>
+    console.error('start html script');
+    require.config({
+        waitSeconds:3,
+
+        baseUrl:"./",
+
+        paths:{
+            'testattr':'jiajun',
+            "underscore":"libs/underscore-1.6.0.min",
+            "backbone":"libs/backbone-1.1.2.min",
+            "jquery":"libs/jquery-2.1.4.min"
+        },
+
+        shim:{
+            "underscore":{
+                exports:"_",
+                init : function(a,b){
+                    console.error(a,b);
+                    return b + 'AA';
+                }
+            },
+            "backbone":{
+                deps:["underscore", "jquery"],
+                exports:"Backbone"
+            }
+        }
+    });
+    require(["underscore", "jquery", "backbone"], function(A, B, C){
+        console.warn('获取成功了');
+        console.log(A);
+        console.log(B);
+        console.log(C);
+    });
+</script>
+</body>
+</html>

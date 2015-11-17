@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DEMO1 简单加载模式</title>
+</head>
+<body>
+<div class="jj">演示</div>
+<script>
+var clickfunc = function(e){
+    console.log('click func', e.type, e);
+};
+    document.getElementsByClassName("jj")[0].addEventListener('click', clickfunc)
+</script>
+<!-- 本html文件是依赖于jun的requireJS文件夹,请把本文件放在该文件夹根目录 -->
+<script src="require.js"></script>
+<script>
+var countnmu = 1;
+setTimeout(function(){console.log('hhhhhhhhhhhhhhhhhhhhhhhhh')});
+console.error('****************************************** HTML1 开始 **********************************************');
+require(["./a/main","./c/main"], function(A, C){
+    console.warn('获取成功了');
+    console.log(A);
+    console.log(C);
+});
+console.error('****************************************** HTML', countnmu++, ' 结束 **********************************************');
+console.error('****************************************** HTML', countnmu, ' 开始 **********************************************');
+require(["./c/main","./a/main"], function(A, C){
+    console.warn('第',countnmu,'次获取成功了');
+    console.log(A);
+    console.log(C);
+});
+</script>
+</body>
+</html>
