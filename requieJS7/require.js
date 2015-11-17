@@ -8,8 +8,10 @@
 /*jslint regexp: true, nomen: true, sloppy: true */
 /*global window, navigator, document, importScripts, setTimeout, opera */
 
+// 本requireJS的注释比较肤浅, 未很好处理, 请有空修改
+
 var requirejs, require, define;
-(function (global) { // git add more
+(function (global) {
     var req, s, head, baseElement, dataMain, src,
         interactiveScript, currentlyAddingScript, mainScript, subPath,
         version = '2.1.11',
